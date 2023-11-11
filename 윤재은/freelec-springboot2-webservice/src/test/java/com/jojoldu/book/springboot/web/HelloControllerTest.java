@@ -14,7 +14,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class) //Junit 실행자 대신에 SpringRunner라는 스프링 실행자 실행. 스프링 부트 테스트와 Junit 사이의 연결자
-@WebMvcTest
+@WebMvcTest //JPA 기능이 작동하지 않음. 외부 연동과 관련된 부분만 활성화
 public class HelloControllerTest {
     @Autowired //스프링이 관리하는 빈을 주입 받는다.
     private MockMvc mvc; //웹 API 테스트할 떄 사용. 스프링 MVC 테스트의 시작점
