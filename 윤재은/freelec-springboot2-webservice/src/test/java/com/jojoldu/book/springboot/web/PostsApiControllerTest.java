@@ -51,7 +51,7 @@ public class PostsApiControllerTest {
         String url = "http://localhost:" + port + "api/v1/posts";
 
         //when
-        ResponseEntity<Long> responseEntity = restTemplate.postForEntity(url, requestDto, Long.class);
+        ResponseEntity<Long> responseEntity = restTemplate.postForEntity(url, requestDto, Long.class); //url, 요청으로 전송될 데이터 타입, 응답 본문의 타입
 
         //then
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
