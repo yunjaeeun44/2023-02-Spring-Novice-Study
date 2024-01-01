@@ -1,0 +1,49 @@
+//프로젝트의 플러그인 의존성 관리
+buildscript {
+    ext { // 전역 변수 설정
+        springBootVersion = '2.1.7.RELEASE' // 2.1.7, 2.1.8, 2.1.9 다 괜찮습니다.
+    }
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management' //스프링 부트의 의존성들을 관리해주는 플러그인
+
+group = 'com.jojoldu.book'
+version = '1.0-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories { //의존성(라이브러리) 원격 저장소
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.projectlombok:lombok')
+    compile('org.springframework.boot:spring-boot-starter-data-jpa') //Spring data JPA
+    compile('com.h2database:h2') //인메모리 관계형 데이터베이스
+    compile('org.springframework.boot:spring-boot-starter-mustache') //템플릿 엔진
+    compile('org.springframework.boot:spring-boot-starter-oauth2-client') //oauth
+    compile('org.springframework.session:spring-session-jdbc') //세션 저장소로 jdbc선택
+    compile("org.mariadb.jdbc:mariadb-java-client")
+    //JUnit4 추가
+    testCompile("org.junit.vintage:junit-vintage-engine") {
+        exclude group: "org.hamcrest", module: "hamcrest-core"
+    }
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+    testCompile('org.springframework.security:spring-security-test')
+
+}
+
+test {
+    useJUnitPlatform()
+}
